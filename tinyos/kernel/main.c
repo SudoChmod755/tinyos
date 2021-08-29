@@ -1,9 +1,11 @@
-#include"print.h"
+#include "print.h"
+#include "init.h"
+#include "interrupt.h"
 void main(void){
-    put_char('s');
-    put_char('z');
-    put_char('\n');
-    put_str("welcome\n");
-    put_int(0x1234567a);
-    while(1);
+     put_str("I am kernel.\n");
+    init_all();
+    put_str("Init finished.\n");
+    asm volatile ("sti");
+    put_str("Turn on the interrupt.\n");
+    while (1);
 }
