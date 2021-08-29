@@ -1,7 +1,9 @@
 # tinyos
 操作系统の学习
 ```
-tinyos
+.
+├── README.md
+└── tinyos
     ├── boot
     │   ├── include
     │   │   └── boot.inc
@@ -9,15 +11,32 @@ tinyos
     │   ├── loader.S
     │   ├── mbr.bin
     │   └── mbr.S
-    ├── kernel
+    ├── build
+    │   ├── init.o
+    │   ├── interrupt.o
     │   ├── kernel.bin
-    │   ├── main.c
-    │   └── main.o
+    │   ├── kernel.o
+    │   ├── main.o
+    │   ├── print.o
+    │   └── timer.o
+    ├── device
+    │   ├── timer.c
+    │   └── timer.h
+    ├── kernel
+    │   ├── global.h
+    │   ├── init.c
+    │   ├── init.h
+    │   ├── interrupt.c
+    │   ├── interrupt.h
+    │   ├── kernel.S
+    │   └── main.c
     └── lib
         ├── kernel
+        │   ├── io.h
         │   ├── print.h
-        │   ├── print.o
         │   └── print.S
         ├── stdint.h
         └── user
+
+9 directories, 26 files
 ```        
