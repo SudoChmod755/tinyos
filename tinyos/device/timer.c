@@ -29,3 +29,4 @@ void timer_init() {
     frequency_set(COUNTER0_PORT, COUNTER0_NO, READ_WRITE_LATCH, COUNTER_MODE, COUNTER0_VALUE);
     put_str("timer_init done.\n");
 }
+
