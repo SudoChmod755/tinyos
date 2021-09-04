@@ -1,7 +1,6 @@
 # tinyos
 操作系统の学习
 ```
-.
 ├── README.md
 └── tinyos
     ├── boot
@@ -23,6 +22,7 @@
     │   ├── memory.o
     │   ├── print.o
     │   ├── string.o
+    │   ├── thread.o
     │   └── timer.o
     ├── device
     │   ├── timer.c
@@ -50,7 +50,10 @@
     │   ├── string.c
     │   ├── string.h
     │   └── user
-    └── makefile
+    ├── makefile
+    └── thread
+        ├── thread.c
+        └── thread.h
 
-9 directories, 40 files
+10 directories, 43 files
 ```        
