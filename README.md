@@ -1,6 +1,7 @@
 # tinyos
 操作系统の学习
 ```
+.
 ├── README.md
 └── tinyos
     ├── boot
@@ -18,10 +19,12 @@
     │   ├── kernel.bin
     │   ├── kernel.map
     │   ├── kernel.o
+    │   ├── list.o
     │   ├── main.o
     │   ├── memory.o
     │   ├── print.o
     │   ├── string.o
+    │   ├── switch.o
     │   ├── thread.o
     │   └── timer.o
     ├── device
@@ -44,6 +47,8 @@
     │   │   ├── bitmap.c
     │   │   ├── bitmap.h
     │   │   ├── io.h
+    │   │   ├── list.c
+    │   │   ├── list.h
     │   │   ├── print.h
     │   │   └── print.S
     │   ├── stdint.h
@@ -52,8 +57,9 @@
     │   └── user
     ├── makefile
     └── thread
+        ├── switch.S
         ├── thread.c
         └── thread.h
 
-10 directories, 43 files
+10 directories, 48 files
 ```        
