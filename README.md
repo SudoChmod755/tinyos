@@ -58,8 +58,10 @@
     ├── makefile
     └── thread
         ├── switch.S
+        ├── sync.c
+        ├── sync.h
         ├── thread.c
         └── thread.h
 
-10 directories, 48 files
+10 directories, 50 files
 ```        
