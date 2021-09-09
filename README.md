@@ -13,6 +13,7 @@
     │   └── mbr.S
     ├── build
     │   ├── bitmap.o
+    │   ├── console.o
     │   ├── debug.o
     │   ├── init.o
     │   ├── interrupt.o
@@ -25,9 +26,12 @@
     │   ├── print.o
     │   ├── string.o
     │   ├── switch.o
+    │   ├── sync.o
     │   ├── thread.o
     │   └── timer.o
     ├── device
+    │   ├── console.c
+    │   ├── console.h
     │   ├── timer.c
     │   └── timer.h
     ├── kernel
@@ -63,5 +67,5 @@
         ├── thread.c
         └── thread.h
 
-10 directories, 50 files
+10 directories, 54 files
 ```        
