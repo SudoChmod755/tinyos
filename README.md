@@ -7,9 +7,7 @@
     ├── boot
     │   ├── include
     │   │   └── boot.inc
-    │   ├── loader.bin
     │   ├── loader.S
-    │   ├── mbr.bin
     │   └── mbr.S
     ├── build
     │   ├── bitmap.o
@@ -20,6 +18,7 @@
     │   ├── kernel.bin
     │   ├── kernel.map
     │   ├── kernel.o
+    │   ├── keyboard.o
     │   ├── list.o
     │   ├── main.o
     │   ├── memory.o
@@ -32,6 +31,10 @@
     ├── device
     │   ├── console.c
     │   ├── console.h
+    │   ├── keyboard.c
+    │   ├── keyboard.c.10-10
+    │   ├── keyboard.c.10-11
+    │   ├── keyboard.h
     │   ├── timer.c
     │   └── timer.h
     ├── kernel
@@ -67,5 +70,5 @@
         ├── thread.c
         └── thread.h
 
-10 directories, 54 files
+10 directories, 57 files
 ```        
