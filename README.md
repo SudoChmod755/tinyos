@@ -32,8 +32,6 @@
     │   ├── console.c
     │   ├── console.h
     │   ├── keyboard.c
-    │   ├── keyboard.c.10-10
-    │   ├── keyboard.c.10-11
     │   ├── keyboard.h
     │   ├── timer.c
     │   └── timer.h
@@ -63,6 +61,8 @@
     │   ├── string.h
     │   └── user
     ├── makefile
+    ├── test
+    ├── test.c
     └── thread
         ├── switch.S
         ├── sync.c
