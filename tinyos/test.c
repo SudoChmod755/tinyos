@@ -1,6 +1,6 @@
 #include<stdio.h>
 int main(){
-    char ch=getchar();
-    printf("%d",ch);
-
+   char *a[2]={"aaa","bbb"};
+   printf("%d\n",a);
+   printf("%s",a[0]);
 }

@@ -15,6 +15,7 @@
     │   ├── debug.o
     │   ├── init.o
     │   ├── interrupt.o
+    │   ├── ioqueue.o
     │   ├── kernel.bin
     │   ├── kernel.map
     │   ├── kernel.o
@@ -31,6 +32,8 @@
     ├── device
     │   ├── console.c
     │   ├── console.h
+    │   ├── ioqueue.c
+    │   ├── ioqueue.h
     │   ├── keyboard.c
     │   ├── keyboard.h
     │   ├── timer.c
@@ -70,5 +73,5 @@
         ├── thread.c
         └── thread.h
 
-10 directories, 57 files
+10 directories, 60 files
 ```        
