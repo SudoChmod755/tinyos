@@ -3,7 +3,7 @@ ENTRY_POINT =0xc0001500
 AS = nasm
 CC = gcc
 LD = ld 
-LIB = -I lib/ -I lib/kernel/ -I lib/user/ -I kernel/ -I device/ -I thread
+LIB = -I lib/ -I lib/kernel/ -I lib/user/ -I kernel/ -I device/ -I thread/ -I userprog/
 ASFLAGS = -f elf
 CFLAGS = -m32 -fno-stack-protector -Wall $(LIB) -c -fno-builtin -W -Wstrict-prototypes \
          -Wmissing-prototypes
@@ -13,7 +13,7 @@ OBJS =$(BUILD_DIR)/main.o $(BUILD_DIR)/init.o $(BUILD_DIR)/interrupt.o \
       $(BUILD_DIR)/debug.o $(BUILD_DIR)/bitmap.o $(BUILD_DIR)/string.o \
 	  $(BUILD_DIR)/memory.o $(BUILD_DIR)/thread.o  $(BUILD_DIR)/list.o \
       $(BUILD_DIR)/switch.o $(BUILD_DIR)/sync.o $(BUILD_DIR)/console.o \
-	  $(BUILD_DIR)/keyboard.o  $(BUILD_DIR)/ioqueue.o
+	  $(BUILD_DIR)/keyboard.o  $(BUILD_DIR)/ioqueue.o $(BUILD_DIR)/tss.o
 
 
 
@@ -82,6 +82,11 @@ $(BUILD_DIR)/keyboard.o: device/keyboard.c device/keyboard.h lib/kernel/print.h 
 $(BUILD_DIR)/ioqueue.o: device/ioqueue.c device/ioqueue.h lib/stdint.h thread/thread.h \
         lib/kernel/list.h kernel/global.h thread/sync.h thread/thread.h kernel/interrupt.h \
         kernel/debug.h
+	$(CC) $(CFLAGS) $< -o $@
+
+$(BUILD_DIR)/tss.o: userprog/tss.c userprog/tss.h thread/thread.h lib/stdint.h \
+    	lib/kernel/list.h kernel/global.h lib/string.h lib/stdint.h \
+     	lib/kernel/print.h
 	$(CC) $(CFLAGS) $< -o $@
 
 
