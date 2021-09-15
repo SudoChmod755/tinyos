@@ -25,9 +25,12 @@
     │   ├── memory.o
     │   ├── print.o
     │   ├── process.o
+    │   ├── stdio.o
     │   ├── string.o
     │   ├── switch.o
     │   ├── sync.o
+    │   ├── syscall-init.o
+    │   ├── syscall.o
     │   ├── thread.o
     │   ├── timer.o
     │   └── tss.o
@@ -62,9 +65,13 @@
     │   │   ├── print.h
     │   │   └── print.S
     │   ├── stdint.h
+    │   ├── stdio.c
+    │   ├── stdio.h
     │   ├── string.c
     │   ├── string.h
     │   └── user
+    │       ├── syscall.c
+    │       └── syscall.h
     ├── makefile
     ├── thread
     │   ├── switch.S
@@ -75,8 +82,10 @@
     └── userprog
         ├── process.c
         ├── process.h
+        ├── syscall-init.c
+        ├── syscall-init.h
         ├── tss.c
         └── tss.h
 
-11 directories, 64 files
+11 directories, 73 files
 ```        
