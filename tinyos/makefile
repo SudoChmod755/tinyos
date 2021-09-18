@@ -109,8 +109,8 @@ $(BUILD_DIR)/stdio.o: lib/stdio.c lib/stdio.h lib/stdint.h kernel/interrupt.h \
 
 $(BUILD_DIR)/ide.o: device/ide.c device/ide.h lib/stdint.h thread/sync.h \
     	lib/kernel/list.h kernel/global.h thread/thread.h lib/kernel/bitmap.h \
-     	kernel/memory.h lib/kernel/io.h lib/stdio.h lib/stdint.h lib/kernel/stdio-kernel.h\
-       	kernel/interrupt.h kernel/debug.h device/console.h device/timer.h lib/string.h
+     	kernel/memory.h lib/kernel/io.h lib/stdio.h lib/stdint.h lib/kernel/stdio-kernel.h \
+	kernel/interrupt.h kernel/debug.h device/console.h device/timer.h lib/string.h
 	$(CC) $(CFLAGS) $< -o $@
 
 $(BUILD_DIR)/stdio-kernel.o: lib/kernel/stdio-kernel.c lib/kernel/stdio-kernel.h lib/stdint.h \
