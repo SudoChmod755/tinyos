@@ -13,6 +13,7 @@
     │   ├── bitmap.o
     │   ├── console.o
     │   ├── debug.o
+    │   ├── fs.o
     │   ├── ide.o
     │   ├── init.o
     │   ├── interrupt.o
@@ -47,6 +48,12 @@
     │   ├── keyboard.h
     │   ├── timer.c
     │   └── timer.h
+    ├── fs
+    │   ├── dir.h
+    │   ├── fs.c
+    │   ├── fs.h
+    │   ├── inode.h
+    │   └── super_block.h
     ├── kernel
     │   ├── debug.c
     │   ├── debug.h
@@ -93,5 +100,5 @@
         ├── tss.c
         └── tss.h
 
-11 directories, 79 files
+12 directories, 85 files
 ```        
