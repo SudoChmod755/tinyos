@@ -123,7 +123,7 @@ bool sync_dir_entry(struct dir* parent_dir, struct dir_entry* p_de, void* io_buf
 
    uint32_t dir_entrys_per_sec = (512 / dir_entry_size);       // 每扇区最大的目录项数目
    int32_t block_lba = -1;
-   
+
    /* 将该目录的所有扇区地址(12个直接块+ 128个间接块)存入all_blocks */
    uint8_t block_idx = 0;
    uint32_t all_blocks[140] = {0};	  // all_blocks保存目录所有的块

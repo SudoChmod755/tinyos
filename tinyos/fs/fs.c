@@ -11,6 +11,7 @@
 #include "debug.h"
 #include "memory.h"
 #include "file.h"
+#include "console.h"
 
 struct partition* cur_part;	 // 默认情况下操作的是哪个分区
 
@@ -60,8 +61,7 @@ static bool mount_partition(struct list_elem* pelem, int arg) {
 
       list_init(&cur_part->open_inodes);
       printk("mount %s done!\n", part->name);
-      printk("data 0x%x\n",sb_buf->data_start_lba);
-
+      printk("inode_table_start_lba %x",cur_part->sb->inode_table_lba);
    /* 此处返回true是为了迎合主调函数list_traversal的实现,与函数本身功能无关。
       只有返回true时list_traversal才会停止遍历,减少了后面元素无意义的遍历.*/
       return true;
@@ -349,12 +349,58 @@ int32_t sys_open(const char* pathname, uint8_t flags) {
 	 printk("creating file\n");
 	 fd = file_create(searched_record.parent_dir, (strrchr(pathname, '/') + 1), flags);
 	 dir_close(searched_record.parent_dir);
-      // 其余为打开文件
+	 break;
+      default:
+   /* 其余情况均为打开已存在文件:
+    * O_RDONLY,O_WRONLY,O_RDWR */
+	 fd = file_open(inode_no, flags);
    }
 
    /* 此fd是指任务pcb->fd_table数组中的元素下标,
     * 并不是指全局file_table中的下标 */
    return fd;
+}
+
+/* 将文件描述符转化为文件表的下标 */
+static uint32_t fd_local2global(uint32_t local_fd) {
+   struct task_struct* cur = running_thread();
+   int32_t global_fd = cur->fd_table[local_fd];  
+   ASSERT(global_fd >= 0 && global_fd < MAX_FILE_OPEN);
+   return (uint32_t)global_fd;
+} 
+
+/* 关闭文件描述符fd指向的文件,成功返回0,否则返回-1 */
+int32_t sys_close(int32_t fd) {
+   int32_t ret = -1;   // 返回值默认为-1,即失败
+   if (fd > 2) {
+      uint32_t _fd = fd_local2global(fd);
+      ret = file_close(&file_table[_fd]);
+      running_thread()->fd_table[fd] = -1; // 使该文件描述符位可用
+   }
+   return ret;
+}
+
+/* 将buf中连续count个字节写入文件描述符fd,成功则返回写入的字节数,失败返回-1 */
+int32_t sys_write(int32_t fd, const void* buf, uint32_t count) {
+   if (fd < 0) {
+      printk("sys_write: fd error\n");
+      return -1;
+   }
+   if (fd == stdout_no) {  
+      char tmp_buf[1024] = {0};
+      memcpy(tmp_buf, buf, count);
+      console_put_str(tmp_buf);
+      return count;
+   }
+   uint32_t _fd = fd_local2global(fd);
+   struct file* wr_file = &file_table[_fd];
+   if (wr_file->fd_flag & O_WRONLY || wr_file->fd_flag & O_RDWR) {
+      uint32_t bytes_written  = file_write(wr_file, buf, count);
+      return bytes_written;
+   } else {
+      console_put_str("sys_write: not allowed to write file without flag O_RDWR or O_WRONLY\n");
+      return -1;
+   }
 }
 
 /* 在磁盘上搜索文件系统,若没有则格式化分区创建文件系统 */
@@ -423,4 +469,3 @@ void filesys_init() {
       file_table[fd_idx++].fd_inode = NULL;
    }
 }
-
