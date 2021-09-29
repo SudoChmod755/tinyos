@@ -15,6 +15,7 @@
     │   ├── debug.o
     │   ├── dir.o
     │   ├── file.o
+    │   ├── fork.o
     │   ├── fs.o
     │   ├── ide.o
     │   ├── init.o
@@ -100,6 +101,8 @@
     │   ├── thread.c
     │   └── thread.h
     └── userprog
+        ├── fork.c
+        ├── fork.h
         ├── process.c
         ├── process.h
         ├── syscall-init.c
@@ -107,5 +110,5 @@
         ├── tss.c
         └── tss.h
 
-12 directories, 92 files
+12 directories, 95 files
 ```        
